@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "398267065573",
+    "firebase_url": "https://skyintertainment.firebaseio.com",
+    "project_id": "skyintertainment",
+    "storage_bucket": "skyintertainment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398267065573:android:592b5299f2b14cf2cfa00c",
+        "android_client_info": {
+          "package_name": "com.bnb.binh.skyintertainment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398267065573-toa1deq03atkajooa4umbqaomh36oi6h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bnb.binh.skyintertainment",
+            "certificate_hash": "4c7be03b50906c7bac786fd871c14fe064e9fc58"
+          }
+        },
+        {
+          "client_id": "398267065573-qfkib76hjvmgkolvkh0nm8gacs8b96mg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGksueRu5kUH79jQc_bGe0kJAq5nSi7Og"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398267065573-qfkib76hjvmgkolvkh0nm8gacs8b96mg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

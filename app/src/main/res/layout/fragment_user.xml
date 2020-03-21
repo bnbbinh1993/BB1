@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:scrollbars="none"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.UserFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:paddingBottom="40dp"
+        android:background="@color/white"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/inForUser"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+
+                android:layout_margin="5dp"
+                android:src="@mipmap/avt"
+                app:civ_border_overlay="true"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/greenblue"
+                android:layout_width="70dp"
+                android:layout_height="70dp" />
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="Bùi Ngọc Bình"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="Xem trang cá nhân của bạn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:padding="15dp"
+            android:background="@drawable/bg_2"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Mời bạn bè"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                android:text="Cùng nhau khám phá B Intertainment nào"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_marginTop="10dp"
+                android:textSize="10sp"
+                android:background="@drawable/bg_3"
+                android:textAllCaps="false"
+                android:text="Mời bạn bè"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/settingUser"
+            android:textAllCaps="false"
+            android:textAlignment="viewStart"
+            android:background="?attr/selectableItemBackground"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:drawableStart="@drawable/ic_settings_orange"
+            android:textSize="14sp"
+            android:text="  Cài đặt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:textAllCaps="false"
+            android:background="?attr/selectableItemBackground"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:drawableStart="@drawable/ic_help_red"
+            android:textSize="14sp"
+            android:text="  Trợ giúp và báo cáo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:textAllCaps="false"
+            android:background="?attr/selectableItemBackground"
+            android:textAlignment="viewStart"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:drawableStart="@drawable/ic_security_greenblue"
+            android:textSize="14sp"
+            android:text="  Chính sách bảo mật"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="Phiên bản 1.0.0"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</ScrollView>

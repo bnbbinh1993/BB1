@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".activity.SplashScreenActivity">
+    <ImageView
+        android:background="@mipmap/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:textColor="#DD18AC"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="B intertaiment- Hãy nói theo cách của bạn."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
