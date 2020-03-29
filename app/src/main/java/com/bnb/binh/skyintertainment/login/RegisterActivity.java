@@ -83,7 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             dialog.dismiss();
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //FirebaseUser user = mAuth.getCurrentUser();
+                            setData();
                             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                             finish();
                         } else {
@@ -106,17 +107,21 @@ public class RegisterActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference();
         currentUser = mAuth.getCurrentUser().getUid();
         String id = currentUser;
-        String name = "Khách_admin";
+        String email = registerTk.getText().toString();
+        String name = "DEV";
         String sdt = "";
         String address ="Thanh Hóa";
         String age = "21";
 
         HashMap<String, String> abc = new HashMap<>();
         abc.put("id",id);
+        abc.put("avt","");
+        abc.put("email",email);
         abc.put("name", name);
         abc.put("sdt", sdt);
         abc.put("address",address);
         abc.put("age",age);
+
 
         FirebaseDatabase.getInstance().getReference().child("Persion").child("Users").child(currentUser).setValue(abc);
         FirebaseDatabase.getInstance().getReference().child("Users").child(currentUser).setValue(abc)

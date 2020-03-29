@@ -2,7 +2,6 @@ package com.bnb.binh.skyintertainment;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.bnb.binh.skyintertainment.fragment.HomeFragment;
 import com.bnb.binh.skyintertainment.fragment.MessengerFragment;
 import com.bnb.binh.skyintertainment.fragment.NotiflcationFragment;
