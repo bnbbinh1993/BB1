@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ShowProfileUserActivity">
+    <LinearLayout
+        android:background="@color/gray"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:id="@+id/progressBarProfile"
+            android:visibility="gone"
+            android:background="#F7F7F7"
+            android:indeterminateOnly="true"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="270dp">
+
+            <ImageView
+                android:id="@+id/backgroundProfileShow"
+                android:background="#72FA88"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/backgroundProfileTopShow"
+                android:background="@drawable/bg_5"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageShowProfile"
+                android:src="@mipmap/logoavatar"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/yellow"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="200dp"
+                android:layout_height="200dp" />
+
+            <ImageView
+                android:id="@+id/btnBackShowProfile"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_4"
+                android:src="@drawable/ic_back_black"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/nameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:visibility="gone"
+                android:layout_marginEnd="5dp"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/white"
+                android:id="@+id/btnTichXanhShow"
+                android:src="@drawable/ic_check_circle_black_24dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/Layout"
+            android:visibility="gone"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnNt"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_1"
+                android:textAllCaps="false"
+                android:text="Nhắn tin"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp" />
+            <Button
+                android:visibility="gone"
+                android:id="@+id/btnAdd"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_1"
+                android:textAllCaps="false"
+                android:text="Kết bạn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="Nơi sống: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/addressShow"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="Công việc: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/cvShow"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="Trường: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/schoolShow"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:text="Tuổi: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/ageShow"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:scrollbars="none"
+            android:background="@color/white"
+            android:layout_marginTop="5dp"
+            android:id="@+id/recyclerviewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

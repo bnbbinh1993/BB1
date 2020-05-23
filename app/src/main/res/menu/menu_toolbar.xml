@@ -2,8 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/setting"
-        android:title="Cài đặt"
-        android:icon="@drawable/ic_settings_black"
+        android:id="@+id/setting1"
+        android:title="about"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_error_black_24dp"
         />
+
 </menu>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/imgAmin1"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/circ_img"
+        android:layout_width="170dp"
+        android:layout_height="170dp" />
+    <ImageView
+        android:id="@+id/imgAmin2"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/circ_img"
+        android:layout_width="170dp"
+        android:layout_height="170dp" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_centerInParent="true"
+        android:id="@+id/imgLogo"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/background"
+        android:layout_width="170dp"
+        android:layout_height="170dp" />
+    <TextView
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="#9F06F1"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/imgLogo"
+        android:text="Đang thả thính..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

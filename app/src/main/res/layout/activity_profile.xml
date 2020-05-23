@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:background="@color/white"
+<androidx.core.widget.NestedScrollView
+    android:scrollbars="none"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,27 +8,58 @@
     android:layout_height="match_parent"
     tools:context=".activity.ProfileActivity">
     <LinearLayout
+
         android:background="@color/gray"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ProgressBar
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:id="@+id/progressBarProfile"
+            android:visibility="gone"
+            android:background="#F7F7F7"
+            android:indeterminateOnly="true"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <RelativeLayout
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="270dp">
 
             <ImageView
-                android:background="@color/greenblue"
+                android:id="@+id/backgroundProfile"
+                android:background="#72FA88"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/backgroundProfileTop"
+                android:background="@drawable/bg_5"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <FrameLayout
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_6"
+                android:layout_width="200dp"
+                android:layout_height="200dp">
+                <ProgressBar
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
             <de.hdodenhof.circleimageview.CircleImageView
-                android:src="@mipmap/avt"
+                android:id="@+id/avtProfile"
+                android:src="@mipmap/logoavatar"
                 app:civ_border_width="1dp"
                 app:civ_border_color="@color/yellow"
                 android:layout_centerInParent="true"
                 android:layout_alignParentBottom="true"
                 android:layout_width="200dp"
                 android:layout_height="200dp" />
+
             <ImageView
                 android:id="@+id/backProfile"
                 android:layout_marginStart="10dp"
@@ -39,24 +70,44 @@
                 android:layout_height="45dp" />
         </RelativeLayout>
 
-        <TextView
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:background="@color/white"
-            android:padding="10dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:text="Bùi Ngọc Bình"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/nameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:visibility="gone"
+                android:layout_marginEnd="5dp"
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/white"
+                android:id="@+id/btnTichXanh"
+                android:src="@drawable/ic_check_circle_black_24dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/Layout"
+            android:visibility="gone"
             android:background="@color/white"
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/btnNt"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_1"
                 android:textAllCaps="false"
@@ -64,6 +115,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp" />
             <Button
+                android:visibility="gone"
+                android:id="@+id/btnAdd"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_1"
                 android:textAllCaps="false"
@@ -71,8 +124,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp" />
         </LinearLayout>
-
         <LinearLayout
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
             android:layout_marginTop="2dp"
             android:background="@color/white"
             android:orientation="vertical"
@@ -92,10 +146,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/address"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="normal"
-                    android:text="Thanh hóa"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -113,10 +168,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/cv"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="normal"
-                    android:text="DEV"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -134,10 +190,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/school"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="normal"
-                    android:text="Học Viện Công Nghệ Bưu Chính Viễn Thông"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -155,13 +211,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/age"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="normal"
-                    android:text="21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:scrollbars="none"
+            android:background="@color/white"
+            android:layout_marginTop="5dp"
+            android:id="@+id/recyclerviewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

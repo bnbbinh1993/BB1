@@ -24,8 +24,8 @@
             android:layout_height="wrap_content">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userAvatar"
+                android:src="@mipmap/logoavatar"
                 android:layout_margin="5dp"
-                android:src="@mipmap/avt"
                 app:civ_border_overlay="true"
                 app:civ_border_width="2dp"
                 app:civ_border_color="@color/greenblue"
@@ -42,7 +42,6 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:text="Bùi Ngọc Bình"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
@@ -81,6 +80,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp" />
         </LinearLayout>
+        <Button
+            android:id="@+id/friendUser"
+            android:textAllCaps="false"
+            android:textAlignment="viewStart"
+            android:background="?attr/selectableItemBackground"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:drawableStart="@drawable/ic_friend_blue"
+            android:textSize="14sp"
+            android:text="  Bạn bè"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
         <Button

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.StoryFragment">
+
+    <ImageView
+        android:id="@+id/imageStory"
+        android:scaleType="fitCenter"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_margin="8dp"
+        android:id="@+id/progress_container"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ProgressBar
+            android:layout_marginEnd="1dp"
+            android:layout_marginStart="1dp"
+            android:id="@+id/progressbar"
+            android:layout_weight="1"
+            android:max="100"
+            android:progress="0"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:progressDrawable="@drawable/story_progress"
+            android:layout_height="4dp" />
+    </LinearLayout>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avtStoryFragment"
+        android:layout_marginStart="10dp"
+        android:src="@mipmap/deptonglao2"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@+id/progress_container"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+    <TextView
+
+        android:id="@+id/nameStoryFragment"
+        android:lines="1"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:text="Dép tông lào"
+        android:layout_toEndOf="@+id/avtStoryFragment"
+        android:layout_below="@+id/progress_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/timeStory"
+        android:lines="1"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:text="13:33"
+        android:layout_toEndOf="@+id/avtStoryFragment"
+        android:layout_below="@+id/nameStoryFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/titleStory"
+        android:gravity="start"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:text="Hello ae?"
+        android:padding="10dp"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

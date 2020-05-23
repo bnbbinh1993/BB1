@@ -2,8 +2,8 @@ package com.bnb.binh.skyintertainment.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -14,13 +14,14 @@ import android.widget.Toast;
 
 import com.bnb.binh.skyintertainment.MainActivity;
 import com.bnb.binh.skyintertainment.R;
+import com.bnb.binh.skyintertainment.activity.AddProfileActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,8 +32,9 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView registerTv;
     private EditText registerTk;
     private EditText registerMk;
-    private FirebaseAuth mAuth;
+
     private ProgressDialog dialog;
+    private FirebaseAuth mAuth;
     private DatabaseReference database;
     private String currentUser;
 
@@ -62,7 +64,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = registerTk.getText().toString().trim();
                 String password = registerMk.getText().toString().trim();
-                Createuser(email,password);
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    Toast.makeText(RegisterActivity.this, "Your Email Id is Invalid.", Toast.LENGTH_SHORT).show();
+                }else if (password.length()<6){
+                    Toast.makeText(RegisterActivity.this, "Ít nhất 6 ký tự", Toast.LENGTH_SHORT).show();
+                }else {
+                    Createuser(email,password);
+                }
             }
         });
 
@@ -85,8 +93,6 @@ public class RegisterActivity extends AppCompatActivity {
                             dialog.dismiss();
                             //FirebaseUser user = mAuth.getCurrentUser();
                             setData();
-                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                            finish();
                         } else {
                             dialog.dismiss();
                             Toast.makeText(RegisterActivity.this, "Đăng ký thất bại.", Toast.LENGTH_SHORT).show();
@@ -108,30 +114,32 @@ public class RegisterActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser().getUid();
         String id = currentUser;
         String email = registerTk.getText().toString();
-        String name = "DEV";
-        String sdt = "";
-        String address ="Thanh Hóa";
-        String age = "21";
+        String name = "B-Team";
+        String sdt = "0 tới 9 tự xếp";
+        String address ="Hà Nội";
+        String age = "18";
 
         HashMap<String, String> abc = new HashMap<>();
         abc.put("id",id);
         abc.put("avt","");
         abc.put("email",email);
         abc.put("name", name);
+        abc.put("onlineStatus", "online");
         abc.put("sdt", sdt);
         abc.put("address",address);
         abc.put("age",age);
+        abc.put("bg","");
+        abc.put("cv","Student");
+        abc.put("school","Hà Nội");
 
-
-        FirebaseDatabase.getInstance().getReference().child("Persion").child("Users").child(currentUser).setValue(abc);
-        FirebaseDatabase.getInstance().getReference().child("Users").child(currentUser).setValue(abc)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // chưa cần phải làm gì!
-                    }
-                });
-
+       // FirebaseDatabase.getInstance().getReference().child("Persion").child("Users").child(currentUser).setValue(abc);
+        FirebaseDatabase.getInstance().getReference().child("Users").child(currentUser).setValue(abc).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                startActivity(new Intent(getApplication(), AddProfileActivity.class));
+                finish();
+            }
+        });
 
     }
 

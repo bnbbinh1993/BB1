@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtUserCmt"
+            android:src="@mipmap/deptonglao2"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <LinearLayout
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/avtUserCmt"
+            android:id="@+id/view81"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            android:background="@drawable/bg_8"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/nameUserCmt"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="Bùi Bình"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_marginStart="5dp"
+                    android:visibility="gone"
+                    android:layout_marginEnd="5dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/white"
+                    android:id="@+id/checkUser"
+                    android:src="@drawable/ic_check_circle_black_24dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/cmt"
+                android:textColor="@color/black"
+                android:textStyle="normal"
+                android:textSize="13sp"
+                android:text="Hello cho mình làm quen với nhá"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </LinearLayout>
+        </LinearLayout>
+    <TextView
+        android:id="@+id/timeCmt"
+        android:paddingStart="10dp"
+        android:layout_toEndOf="@+id/avtUserCmt"
+        android:layout_below="@+id/view81"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:text="12:23 CH"
+        android:textColor="#EB000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

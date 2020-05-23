@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:background="#fff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CommentActivity">
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <androidx.cardview.widget.CardView
+           android:id="@+id/view71"
+           android:padding="5dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <LinearLayout
+               android:layout_gravity="center"
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <ImageButton
+                   android:id="@+id/btnBackCmt"
+                   android:padding="10dp"
+                   android:background="?attr/selectableItemBackground"
+                   android:src="@drawable/ic_back_black"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+               <TextView
+                   android:gravity="center"
+                   android:layout_gravity="center"
+                   android:textColor="@color/black"
+                   android:textStyle="bold"
+                   android:textSize="16sp"
+                   android:text="Bình luận"
+                   android:padding="10dp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent" />
+           </LinearLayout>
+       </androidx.cardview.widget.CardView>
+
+       <RelativeLayout
+           android:layout_below="@+id/view71"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:layout_above="@+id/view72"
+               android:id="@+id/recyclerviewCmt"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"/>
+           <androidx.cardview.widget.CardView
+               android:id="@+id/view72"
+               android:layout_alignParentBottom="true"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <RelativeLayout
+                   android:paddingEnd="5dp"
+                   android:paddingStart="10dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="5dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <ImageButton
+                       android:background="?attr/selectableItemBackground"
+                       android:id="@+id/btnImage"
+                       android:src="@drawable/ic_image_24dp"
+                       android:layout_width="42dp"
+                       android:layout_height="42dp" />
+                   <FrameLayout
+                       android:paddingEnd="10dp"
+                       android:background="@drawable/bg_11"
+                       android:paddingStart="10dp"
+                       android:layout_toEndOf="@+id/btnImage"
+                       android:layout_toStartOf="@+id/btnCmt"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                       <EditText
+                           android:padding="2dp"
+                           android:id="@+id/cmtEt"
+                           android:inputType="textCapSentences|textImeMultiLine"
+                           android:background="@drawable/bg_11"
+                           android:hint="Aa"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content" />
+                   </FrameLayout>
+
+                   <ImageButton
+                       android:id="@+id/btnCmt"
+                       android:layout_alignParentEnd="true"
+                       android:background="?attr/selectableItemBackground"
+                       android:src="@drawable/ic_messenger_pink"
+                       android:layout_width="42dp"
+                       android:layout_height="42dp" />
+               </RelativeLayout>
+           </androidx.cardview.widget.CardView>
+       </RelativeLayout>
+   </RelativeLayout>
+
+
+
+</LinearLayout>

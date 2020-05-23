@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NewsActivity">
+    <RelativeLayout
+        android:id="@+id/view1"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:padding="10dp"
+            android:id="@+id/backNews"
+            android:background="?attr/actionBarItemBackground"
+            android:src="@drawable/ic_back_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:layout_marginEnd="20dp"
+            android:layout_toStartOf="@+id/tvDang"
+            android:textSize="15sp"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/backNews"
+            android:text="Tạo bài viết"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+           android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:layout_marginEnd="5dp"
+            android:id="@+id/tvDang"
+            android:textSize="15sp"
+            android:textAllCaps="true"
+            android:text="Đăng"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_below="@+id/view1"
+        android:id="@+id/view2"
+        android:background="#9E9E9E"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <RelativeLayout
+        android:layout_below="@id/view2"
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtTongLao"
+            android:layout_width="40dp"
+            android:src="@mipmap/deptonglao2"
+            android:layout_height="40dp" />
+        <TextView
+            android:id="@+id/nameTonglao"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:layout_toEndOf="@+id/avtTongLao"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+       <LinearLayout
+           android:layout_marginEnd="10dp"
+           android:orientation="horizontal"
+           android:layout_alignParentEnd="true"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+           <CheckBox
+               android:checked="true"
+               android:textAppearance="?android:attr/textAppearanceLarge"
+               android:id="@+id/checkNewfeed"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Bảng tin"
+               android:textSize="12sp" />
+           <CheckBox
+               android:textAppearance="?android:attr/textAppearanceLarge"
+               android:id="@+id/checkStory"
+               android:textSize="12sp"
+               android:text="Stories"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+       </LinearLayout>
+
+    </RelativeLayout>
+    <EditText
+
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/view3"
+        android:id="@+id/inputNews"
+        android:hint="Bạn đang nghĩ gì?"
+        android:paddingEnd="20dp"
+        android:paddingStart="10dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:background="@drawable/bg_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_below="@id/inputNews"
+        android:id="@+id/view4"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:id="@+id/view41"
+            android:background="#9E9E9E"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <ImageView
+            android:id="@+id/imageInput"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            />
+        <ImageButton
+            android:id="@+id/btnClearImage"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_4"
+            android:src="@drawable/ic_clear_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_above="@+id/view5"
+        android:background="#9E9E9E"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <RelativeLayout
+        android:background="#fff"
+        android:padding="7dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/view5"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginEnd="20dp"
+            android:layout_toStartOf="@+id/view88"
+            android:padding="10dp"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text="Thêm vào bài viết của bạn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+      <LinearLayout
+          android:gravity="center"
+          android:layout_alignParentEnd="true"
+          android:id="@+id/view88"
+          android:layout_width="60dp"
+          android:layout_height="wrap_content">
+          <ImageButton
+              android:padding="10dp"
+              android:id="@+id/btnImageNew"
+              android:background="?attr/selectableItemBackground"
+              android:layout_alignParentEnd="true"
+              android:src="@drawable/ic_image_24dp"
+              android:layout_width="40dp"
+              android:layout_height="40dp" />
+      </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>
