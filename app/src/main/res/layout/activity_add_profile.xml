@@ -1,44 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_gravity="center"
-    android:orientation="vertical"
+<ScrollView
+   android:scrollbars="none"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.AddProfileActivity">
-    <TextView
-        android:layout_margin="20dp"
-        android:textAlignment="center"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:text="Vui lòng nhập tên của bạn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/edtName"
-        android:maxLength="30"
-        android:maxHeight="50dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:layout_margin="10dp"
-        android:padding="15dp"
-        android:background="@drawable/bg_1"
-        android:hint="Tên..."
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btnXacNhan"
-        android:textSize="14sp"
-        android:textAllCaps="false"
-        android:text="Xác nhận"
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_8"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp" />
-</LinearLayout>
+   <LinearLayout
+      android:gravity="center"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <TextView
+           android:layout_margin="20dp"
+           android:textAlignment="center"
+           android:padding="10dp"
+           android:textSize="20sp"
+           android:textColor="@color/black"
+           android:textStyle="bold"
+           android:text="Vui lòng điền đủ các thông tin"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <EditText
+           android:inputType="textCapSentences"
+           android:id="@+id/edtName"
+           android:maxLength="30"
+           android:maxHeight="50dp"
+           android:textColor="@color/black"
+           android:textStyle="bold"
+           android:textSize="14sp"
+           android:layout_margin="10dp"
+           android:padding="15dp"
+           android:background="@drawable/bg_1"
+           android:hint="Tên..."
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <EditText
+           android:id="@+id/diachi"
+           android:inputType="textCapSentences"
+           android:maxLength="30"
+           android:maxHeight="50dp"
+           android:textColor="@color/black"
+           android:textStyle="bold"
+           android:textSize="14sp"
+           android:layout_margin="10dp"
+           android:padding="15dp"
+           android:background="@drawable/bg_1"
+           android:hint="Tỉnh...(VD:Thanh Hóa)"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <EditText
+           android:id="@+id/truonghoc"
+           android:inputType="textCapSentences"
+           android:maxLength="30"
+           android:maxHeight="50dp"
+           android:textColor="@color/black"
+           android:textStyle="bold"
+           android:textSize="14sp"
+           android:layout_margin="10dp"
+           android:padding="15dp"
+           android:background="@drawable/bg_1"
+           android:hint="Trường học...(VD: PTIT)"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <EditText
+           android:id="@+id/congviec"
+           android:inputType="textCapSentences"
+           android:maxLength="30"
+           android:maxHeight="50dp"
+           android:textColor="@color/black"
+           android:textStyle="bold"
+           android:textSize="14sp"
+           android:layout_margin="10dp"
+           android:padding="15dp"
+           android:background="@drawable/bg_1"
+           android:hint="Công việc...(VD: Student)"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:textColor="@color/black"
+               android:layout_margin="10dp"
+               android:padding="20dp"
+               android:text="Giới tính"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+           <RadioGroup
+               android:layout_margin="10dp"
+               android:padding="15dp"
+               android:orientation="horizontal"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+               <RadioButton
+                   android:id="@+id/btnNam"
+                   android:layout_marginEnd="10dp"
+                   android:text="Nam"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+               <RadioButton
+                   android:id="@+id/btnNu"
+                   android:layout_marginStart="10dp"
+                   android:text="Nữ"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+           </RadioGroup>
+
+       </LinearLayout>
+
+       <TextView
+           android:layout_margin="10dp"
+           android:paddingStart="20dp"
+           android:text="Ngày sinh"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <LinearLayout
+           android:gravity="center"
+           android:layout_gravity="center"
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <EditText
+               android:id="@+id/ngay"
+               android:layout_width="109dp"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:gravity="center"
+               android:hint="Ngày"
+               android:inputType="number"
+               android:maxLength="2"
+               android:maxLines="1" />
+           <EditText
+               android:id="@+id/thang"
+               android:inputType="number"
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:hint="Tháng"
+               android:maxLength="2"
+               android:maxLines="1"
+               android:layout_width="100dp"
+               android:layout_height="wrap_content" />
+           <EditText
+               android:id="@+id/nam"
+               android:inputType="number"
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:hint="Năm"
+               android:maxLength="4"
+               android:maxLines="1"
+               android:layout_width="100dp"
+               android:layout_height="wrap_content" />
+
+       </LinearLayout>
+       <Button
+
+           android:id="@+id/btnXacNhan"
+           android:textSize="14sp"
+           android:textAllCaps="false"
+           android:text="Xác nhận"
+           android:layout_margin="20dp"
+           android:layout_gravity="center"
+           android:background="@drawable/bg_8"
+           android:layout_width="wrap_content"
+           android:layout_height="40dp" />
+   </LinearLayout>
+</ScrollView>

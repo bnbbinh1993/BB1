@@ -94,7 +94,7 @@
 
     </RelativeLayout>
     <EditText
-
+        android:inputType="textCapSentences"
         android:textStyle="normal"
         android:textColor="@color/black"
         android:layout_marginBottom="5dp"
