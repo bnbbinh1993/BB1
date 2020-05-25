@@ -121,6 +121,7 @@ public class AddProfileActivity extends AppCompatActivity {
     private void uploadData(String name,String address,String school,String work,String sex,String sinhnhat) {
         //add
         HashMap<String, Object> abc = new HashMap<>();
+       //thêm sau
         abc.put("name",name);
         database.updateChildren(abc).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

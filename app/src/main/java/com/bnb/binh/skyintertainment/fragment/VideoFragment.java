@@ -1,5 +1,6 @@
 package com.bnb.binh.skyintertainment.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bnb.binh.skyintertainment.R;
+import com.bnb.binh.skyintertainment.activity.RoomChatActivity;
 import com.bnb.binh.skyintertainment.adapters.VideoPlayerRecyclerAdapter;
 import com.bnb.binh.skyintertainment.custom.VerticalSpacingItemDecorator;
 import com.bnb.binh.skyintertainment.custom.VideoPlayerRecyclerView;
@@ -50,7 +53,8 @@ public class VideoFragment extends Fragment {
     private TextView coutDelayTv;
     private PulseView pulseView;
     private boolean roomChat = false;
-
+    private RadioButton btnOderNam;
+    private RadioButton btnOderNu;
     private String myId = HomeFragment.mID;
     private Timer timer;
     private TimerTask timerTask;
@@ -72,6 +76,8 @@ public class VideoFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.mRecyclerview);
         pulseView = view.findViewById(R.id.pv);
         coutDelayTv = view.findViewById(R.id.coutDelays);
+        btnOderNam = view.findViewById(R.id.btnOderNam);
+        btnOderNu = view.findViewById(R.id.btnOderNu);
 
         // Glide.with(getContext()).load(R.mipmap.deptonglao2).apply(new RequestOptions().centerCrop()).into(imgLogo);
         view.findViewById(R.id.btnBatDau).setOnClickListener(new View.OnClickListener() {
@@ -79,7 +85,20 @@ public class VideoFragment extends Fragment {
             public void onClick(View v) {
                 pulseView.startPulse();
                 coutDelayTv.setVisibility(View.VISIBLE);
-                setTimer("nu", "nam");
+              if (btnOderNam.isChecked() && btnOderNu.isChecked()){
+                  Toast.makeText(getContext(), "Vui chọn đối tượng của bạn!", Toast.LENGTH_SHORT).show();
+              }else {
+                  if (btnOderNam.isChecked()){
+                      String oder = "nam";
+                      String noOder = "nu";
+                      setTimer(oder, noOder);
+                  }else {
+                      String oder = "nu";
+                      String noOder = "nam";
+                      setTimer(oder, noOder);
+                  }
+              }
+
             }
         });
 
@@ -91,6 +110,7 @@ public class VideoFragment extends Fragment {
                 timerTask.cancel();
                 coutDelayTv.setVisibility(View.GONE);
                 timeDelays = 0;
+                //cần cái id phongg = thời gian tạo ra nó
                 removeRoom();
             }
         });
@@ -213,10 +233,11 @@ public class VideoFragment extends Fragment {
         timer.scheduleAtFixedRate(timerTask, 0, 1000);
     }
 
-    private void checkRoom(String oder, String oderFalse) {
+    private void checkRoom(final String oder, final String oderFalse) {
         final List<WaitingRoom> waitingRoomList = new ArrayList<>();
         waitingRoomList.clear();
         if (!roomChat) {
+            //chưa lấy dữ liệu
             //chay code nhu bt
             DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("WaittingRoom").child(oder);
             mRef.addValueEventListener(new ValueEventListener() {
@@ -226,47 +247,57 @@ public class VideoFragment extends Fragment {
                         WaitingRoom waitingRoom = ds.getValue(WaitingRoom.class);
                         waitingRoomList.add(waitingRoom);
                     }
+                    Log.d("SIZE", "Size: "+waitingRoomList.size());
+                    if (waitingRoomList.size() == 0) {
+
+                        roomChat = true;
+                        //vào phòng chờ
+                        String timeKey = String.valueOf(System.currentTimeMillis());
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("hisId", "");
+                        map.put("check", false);
+                        map.put("myId", myId);
+                        map.put("timeKey",timeKey);
+
+                        DatabaseReference goWaittingRoom = FirebaseDatabase.getInstance().getReference().child("WaittingRoom");
+                        goWaittingRoom.child(oderFalse).child(timeKey).setValue(map);
+                        // tạo phòng chát và chờ
+                        DatabaseReference chatRoom = FirebaseDatabase.getInstance().getReference().child("Room").child(myId);
+                        HashMap<String, Object> roomData = new HashMap<>();
+                        roomData.put("myId", myId);
+                        roomData.put("hisId", "");
+                        chatRoom.setValue(roomData);
+                    } else {
+                        roomChat = true;
+                        //ghép cặp mới người đầu tiên vào chờ...
+                        for (int i = 0; i < waitingRoomList.size(); i++) {
+                            if (!waitingRoomList.get(i).isCheck()) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                                        .child("WaittingRoom");
+                                HashMap<String, Object> update = new HashMap<>();
+                                update.put("hisId", myId);
+                                update.put("check", true);
+                                reference.child(oder).child(waitingRoomList.get(i).getTimeKey()).updateChildren(update);
+                                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference()
+                                        .child("Room");
+                                HashMap<String, Object> update2 = new HashMap<>();
+                                update2.put("hisId",myId);
+                                reference2.child(waitingRoomList.get(i).getMyid()).updateChildren(update2);
+                                showChat(waitingRoomList.get(i).getMyid());
+                                break;
+                            }
+                        }
+                    }
                 }
+
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             });
 
-            if (waitingRoomList.size() == 0) {
 
-                roomChat = true;
-                //vào phòng chờ
-                String timeKey = String.valueOf(System.currentTimeMillis());
-                HashMap<String, Object> map = new HashMap<>();
-                map.put("hisId", "");
-                map.put("check", false);
-                map.put("myId", myId);
-                map.put("timeKey",timeKey);
 
-                DatabaseReference goWaittingRoom = FirebaseDatabase.getInstance().getReference().child("WaittingRoom");
-                goWaittingRoom.child(oderFalse).child(timeKey).setValue(map);
-                // tạo phòng chát và chờ
-                DatabaseReference chatRoom = FirebaseDatabase.getInstance().getReference().child("Room").child(myId);
-                HashMap<String, Object> roomData = new HashMap<>();
-                roomData.put("myId", myId);
-                roomData.put("hisId", "");
-                chatRoom.setValue(roomData);
-            } else {
-                //ghép cặp mới người đầu tiên vào chờ...
-                for (int i = 0; i < waitingRoomList.size(); i++) {
-                    if (!waitingRoomList.get(i).isCheck()) {
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                                .child("WaittingRoom");
-                        HashMap<String, Object> update = new HashMap<>();
-                        update.put("hisId", myId);
-                        update.put("check", true);
-                        reference.child(oder).child(waitingRoomList.get(i).getHisId()).updateChildren(update);
-                        showChat(waitingRoomList.get(i).getMyid());
-                        break;
-                    }
-                }
-            }
         } else {
             //nếu đnag trong phòng chát thì
             //show phòng đang chát
@@ -277,8 +308,8 @@ public class VideoFragment extends Fragment {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         String data = "" + ds.getValue();
                         if (data != null) {
-                            // tat diglog chờ
-                            // hiển thị chát
+                            Toast.makeText(getContext(), "Đã ghép cặp thành công ^^", Toast.LENGTH_SHORT).show();
+                            showChat(data);
                         }
                     }
                 }
@@ -295,7 +326,15 @@ public class VideoFragment extends Fragment {
 
     private void showChat(String hisId) {
         //vào phòng chát
+        roomChat = true;
+        pulseView.finishPulse();
+        timerTask.cancel();
+        coutDelayTv.setVisibility(View.GONE);
+        timeDelays = 0;
+        removeRoom();
         Toast.makeText(getContext(), "Đã vào phòng chát...", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getContext(), RoomChatActivity.class));
+
     }
 
 
