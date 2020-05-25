@@ -85,19 +85,19 @@ public class VideoFragment extends Fragment {
             public void onClick(View v) {
                 pulseView.startPulse();
                 coutDelayTv.setVisibility(View.VISIBLE);
-              if (btnOderNam.isChecked() && btnOderNu.isChecked()){
-                  Toast.makeText(getContext(), "Vui chọn đối tượng của bạn!", Toast.LENGTH_SHORT).show();
-              }else {
-                  if (btnOderNam.isChecked()){
-                      String oder = "nam";
-                      String noOder = "nu";
-                      setTimer(oder, noOder);
-                  }else {
-                      String oder = "nu";
-                      String noOder = "nam";
-                      setTimer(oder, noOder);
-                  }
-              }
+                if (btnOderNam.isChecked() && btnOderNu.isChecked()) {
+                    Toast.makeText(getContext(), "Vui chọn đối tượng của bạn!", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (btnOderNam.isChecked()) {
+                        String oder = "nam";
+                        String noOder = "nu";
+                        setTimer(oder, noOder);
+                    } else {
+                        String oder = "nu";
+                        String noOder = "nam";
+                        setTimer(oder, noOder);
+                    }
+                }
 
             }
         });
@@ -219,7 +219,7 @@ public class VideoFragment extends Fragment {
 
                         if (timeDelays % 5 == 0) {
 
-                            Log.d("REQEST","Bắt đầu reqest");
+                            Log.d("REQEST", "Bắt đầu reqest");
                             //5s request 1 lần
                             if (requestCheck) {
                                 requestCheck = false;
@@ -247,7 +247,7 @@ public class VideoFragment extends Fragment {
                         WaitingRoom waitingRoom = ds.getValue(WaitingRoom.class);
                         waitingRoomList.add(waitingRoom);
                     }
-                    Log.d("SIZE", "Size: "+waitingRoomList.size());
+                    Log.d("SIZE", "Size: " + waitingRoomList.size());
                     if (waitingRoomList.size() == 0) {
 
                         roomChat = true;
@@ -257,7 +257,7 @@ public class VideoFragment extends Fragment {
                         map.put("hisId", "");
                         map.put("check", false);
                         map.put("myId", myId);
-                        map.put("timeKey",timeKey);
+                        map.put("timeKey", timeKey);
 
                         DatabaseReference goWaittingRoom = FirebaseDatabase.getInstance().getReference().child("WaittingRoom");
                         goWaittingRoom.child(oderFalse).child(timeKey).setValue(map);
@@ -281,7 +281,7 @@ public class VideoFragment extends Fragment {
                                 DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference()
                                         .child("Room");
                                 HashMap<String, Object> update2 = new HashMap<>();
-                                update2.put("hisId",myId);
+                                update2.put("hisId", myId);
                                 reference2.child(waitingRoomList.get(i).getMyid()).updateChildren(update2);
                                 showChat(waitingRoomList.get(i).getMyid());
                                 break;
@@ -295,7 +295,6 @@ public class VideoFragment extends Fragment {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             });
-
 
 
         } else {

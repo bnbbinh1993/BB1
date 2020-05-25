@@ -65,7 +65,7 @@ public class NewsActivity extends AppCompatActivity {
     private ImageView imageInput;
     private Uri imageUri;
     private InputStream imageStream;
-    private static final int RESULT_LOAD_IMAGE =1;
+    private static final int RESULT_LOAD_IMAGE = 1;
     private int check = 0;
     private FirebaseAuth auth;
     private FirebaseUser user;
@@ -73,7 +73,7 @@ public class NewsActivity extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore;
     private CollectionReference cRef;
     private String imageUploadURL = "";
-    private String URLavt="123";
+    private String URLavt = "123";
     private String ID;
     private String urlUser;
     private DatabaseReference mData;
@@ -86,19 +86,19 @@ public class NewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news);
         init();
         initEvent();
-        auth=FirebaseAuth.getInstance();
-        user=auth.getCurrentUser();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
         ID = user.getUid();
         firebaseFirestore = FirebaseFirestore.getInstance();
-        storageReference=FirebaseStorage.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         mData = FirebaseDatabase.getInstance().getReference("Users");
         Query query = mData.orderByChild("email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    if (ds!=null){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (ds != null) {
                         String name = ds.child("name").getValue().toString();
                         String urlImage = ds.child("avt").getValue().toString();
                         urlUser = urlImage;
@@ -116,8 +116,6 @@ public class NewsActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }
@@ -141,15 +139,15 @@ public class NewsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (!CheckBoxStories.isChecked() && !CheckBoxNews.isChecked()){
+                if (!CheckBoxStories.isChecked() && !CheckBoxNews.isChecked()) {
                     Toast.makeText(NewsActivity.this, "Bạn muốn đăng lên đâu?", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
 
-                    if (imageUri != null || inputNews.length()>0){
+                    if (imageUri != null || inputNews.length() > 0) {
                         dialog = ProgressDialog.show(NewsActivity.this, "",
                                 "Loading. Please wait...", true);
                         upData();
-                    }else {
+                    } else {
                         Toast.makeText(NewsActivity.this, "Hay điền gì đó?", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -160,10 +158,11 @@ public class NewsActivity extends AppCompatActivity {
         backNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              backToMainActivity();
+                backToMainActivity();
             }
         });
     }
+
     private void init() {
         backNews = findViewById(R.id.backNews);
         btnImageNew = findViewById(R.id.btnImageNew);
@@ -177,6 +176,7 @@ public class NewsActivity extends AppCompatActivity {
         CheckBoxNews = findViewById(R.id.checkNewfeed);
         CheckBoxStories = findViewById(R.id.checkStory);
     }
+
     private void getImageFromAlbum() {
         try {
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
@@ -186,6 +186,7 @@ public class NewsActivity extends AppCompatActivity {
             Log.i("Error", exp.toString());
         }
     }
+
     @Override
     protected void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
@@ -206,44 +207,48 @@ public class NewsActivity extends AppCompatActivity {
             Toast.makeText(NewsActivity.this, "You haven't picked Image", Toast.LENGTH_LONG).show();
         }
     }
+
     private void setVisibleImage() {
         check = 1;
         viewImageInput.setVisibility(View.VISIBLE);
     }
-    private void setGoneImage(){
+
+    private void setGoneImage() {
         check = 0;
         viewImageInput.setVisibility(View.GONE);
     }
-    private void backToMainActivity(){
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(NewsActivity.this);
-            builder.setMessage("Bạn có muốn xóa bài viết hay không?")
-                    .setCancelable(false)
-                    .setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    }).setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            AlertDialog alertDialog = builder.create();
-            alertDialog.setTitle("Thoát");
-            alertDialog.show();
+    private void backToMainActivity() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(NewsActivity.this);
+        builder.setMessage("Bạn có muốn xóa bài viết hay không?")
+                .setCancelable(false)
+                .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setTitle("Thoát");
+        alertDialog.show();
 
     }
+
     @Override
     public void onBackPressed() {
         backToMainActivity();
     }
 
-    private void upData(){
-        if (imageUri == null){
+    private void upData() {
+        if (imageUri == null) {
             uploadData(imageUploadURL);
-        }else {
+        } else {
             final StorageReference mRef = storageReference.child("imageNews").child(UUID.randomUUID().toString());
             mRef.putFile(imageUri).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -270,25 +275,25 @@ public class NewsActivity extends AppCompatActivity {
         }
     }
 
-    private void uploadData(String urlImage){
-        if (CheckBoxNews.isChecked()){
+    private void uploadData(String urlImage) {
+        if (CheckBoxNews.isChecked()) {
             String uId = UUID.randomUUID().toString();
             DatabaseReference mRaf = FirebaseDatabase.getInstance().getReference("News");
-          
+
             String news = inputNews.getText().toString().trim();
             String time = String.valueOf(System.currentTimeMillis());
             String url = urlImage;
             String name = nameTonglao.getText().toString();
 
-            HashMap<String,Object> map = new HashMap<>();
-            map.put("news",news);
-            map.put("urlImage",url);
-            map.put("time",time);
-            map.put("uId",uId);
-            map.put("name",name);
-            map.put("like","0");
-            map.put("urlAvt1",urlUser);
-            map.put("id",user.getUid());
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("news", news);
+            map.put("urlImage", url);
+            map.put("time", time);
+            map.put("uId", uId);
+            map.put("name", name);
+            map.put("like", "0");
+            map.put("urlAvt1", urlUser);
+            map.put("id", user.getUid());
 
             mRaf.child(time).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -305,11 +310,11 @@ public class NewsActivity extends AppCompatActivity {
                 }
             });
         }
-        if (CheckBoxStories.isChecked()){
+        if (CheckBoxStories.isChecked()) {
 
-            HashMap<String,Object> map2 = new HashMap<>();
-            map2.put("id",user.getUid());
-            map2.put("image",urlImage);
+            HashMap<String, Object> map2 = new HashMap<>();
+            map2.put("id", user.getUid());
+            map2.put("image", urlImage);
             DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Story");
             mRef.child(user.getUid()).setValue(map2).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -322,26 +327,23 @@ public class NewsActivity extends AppCompatActivity {
 
             String time = String.valueOf(System.currentTimeMillis());
             String title = inputNews.getText().toString().trim();
-            HashMap<String,Object> map3 = new HashMap<>();
-            map3.put("id",user.getUid());
-            map3.put("image",urlImage);
-            map3.put("time",time);
-            map3.put("title",title);
-            map3.put("name",nameTonglao.getText());
-            map3.put("avt",urlUser);
+            HashMap<String, Object> map3 = new HashMap<>();
+            map3.put("id", user.getUid());
+            map3.put("image", urlImage);
+            map3.put("time", time);
+            map3.put("title", title);
+            map3.put("name", nameTonglao.getText());
+            map3.put("avt", urlUser);
 
             DatabaseReference mRof = FirebaseDatabase.getInstance().getReference("Stories");
             mRof.child(user.getUid()).child(time).setValue(map3);
 
         }
 
-        
-
-        
 
     }
 
     private void mFinish() {
-        
+
     }
 }
