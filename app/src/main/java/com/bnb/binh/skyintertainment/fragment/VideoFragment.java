@@ -58,6 +58,7 @@ public class VideoFragment extends Fragment {
     private String myId = HomeFragment.mID;
     private Timer timer;
     private TimerTask timerTask;
+    private String timeKey ="";
     private int timeDelays = 0;
     private boolean requestCheck = false;
 
@@ -223,7 +224,7 @@ public class VideoFragment extends Fragment {
                             //5s request 1 lần
                             if (requestCheck) {
                                 requestCheck = false;
-                                checkRoom(oder, oderFalse);
+                                requestRoom(oderFalse);
                             }
                         }
                     }
@@ -231,6 +232,29 @@ public class VideoFragment extends Fragment {
             }
         };
         timer.scheduleAtFixedRate(timerTask, 0, 1000);
+    }
+    private void requestRoom(String oderFalse){
+        DatabaseReference request = FirebaseDatabase.getInstance().getReference().child("WaittingRoom");
+        request.child(oderFalse).child(timeKey).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                   if (dataSnapshot.hasChild("check")){
+                       String data = "" + dataSnapshot.child("myId").getValue();
+                       Toast.makeText(getContext(), ""+data, Toast.LENGTH_SHORT).show();
+                       if (data != null) {
+                           Toast.makeText(getContext(), "Đã ghép cặp thành công ^^"+data, Toast.LENGTH_SHORT).show();
+                           showChat(data);
+                       }
+                   }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void checkRoom(final String oder, final String oderFalse) {
@@ -252,7 +276,7 @@ public class VideoFragment extends Fragment {
 
                         roomChat = true;
                         //vào phòng chờ
-                        String timeKey = String.valueOf(System.currentTimeMillis());
+                        timeKey = String.valueOf(System.currentTimeMillis());
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("hisId", "");
                         map.put("check", false);
