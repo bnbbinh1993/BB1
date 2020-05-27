@@ -15,7 +15,6 @@ android {
     signingConfigs {
 
         release {
-
             storeFile file('C:\\Users\\PC\\Desktop\\DepTongLao\\deptonglao2.jks')
             storePassword "123456"
             keyAlias "binh"

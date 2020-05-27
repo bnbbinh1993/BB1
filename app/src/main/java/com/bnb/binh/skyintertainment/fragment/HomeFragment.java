@@ -87,15 +87,9 @@ public class HomeFragment extends Fragment {
         mLoadView = view.findViewById(R.id.loadView);
         mLoadViewTrue = view.findViewById(R.id.LoadViewTrue);
 
+        mLoadView.setVisibility(View.VISIBLE);
+        mLoadViewTrue.setVisibility(View.GONE);
 
-        if (MainActivity.Totals == false) {
-            MainActivity.Totals = true;
-            mLoadView.setVisibility(View.VISIBLE);
-            mLoadViewTrue.setVisibility(View.GONE);
-        } else {
-            mLoadView.setVisibility(View.GONE);
-            mLoadViewTrue.setVisibility(View.VISIBLE);
-        }
 
         checkUser();    //mặc định nó phải load đầu ^^
         init(view);     // ánh xạ

@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 
 import com.bnb.binh.skyintertainment.R;
 import com.bnb.binh.skyintertainment.adapters.CmtAdapter;
+import com.bnb.binh.skyintertainment.fragment.HomeFragment;
 import com.bnb.binh.skyintertainment.models.Cmt;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +41,7 @@ public class CommentActivity extends AppCompatActivity {
     private String myId;
     private String hisId;
     private String key;
+    private String keyId;
     private List<Cmt> list;
     private CmtAdapter adapter;
 
@@ -55,6 +57,7 @@ public class CommentActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
+        keyId = intent.getStringExtra("keyId");
 
         init();
         initView();
@@ -100,6 +103,15 @@ public class CommentActivity extends AppCompatActivity {
         map.put("hisId",myId);
         map.put("Cmt",cmt);
         map.put("timeCmt",time);
+
+        DatabaseReference mNotification = FirebaseDatabase.getInstance().getReference("Notification");
+        if (!key.equals(HomeFragment.mID)){
+            HashMap<String, Object> map2 = new HashMap<>();
+            map2.put("id",time);
+            map2.put("hisId",HomeFragment.mID);
+            map2.put("content","đã bình luận về bài viết của bạn.");
+            mNotification.child(keyId).child(time).setValue(map2);
+        }
 
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Cmts").child(key).child(time);
         mRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {

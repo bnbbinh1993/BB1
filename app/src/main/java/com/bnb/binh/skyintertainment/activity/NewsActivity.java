@@ -292,7 +292,7 @@ public class NewsActivity extends AppCompatActivity {
             map.put("uId", uId);
             map.put("name", name);
             map.put("like", "0");
-            map.put("urlAvt1", urlUser);
+            map.put("urlAvt1", urlUser);//avt url
             map.put("id", user.getUid());
 
             mRaf.child(time).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -333,7 +333,7 @@ public class NewsActivity extends AppCompatActivity {
             map3.put("time", time);
             map3.put("title", title);
             map3.put("name", nameTonglao.getText());
-            map3.put("avt", urlUser);
+            map3.put("avt", urlUser);//avt
 
             DatabaseReference mRof = FirebaseDatabase.getInstance().getReference("Stories");
             mRof.child(user.getUid()).child(time).setValue(map3);

@@ -3,7 +3,6 @@ package com.bnb.binh.skyintertainment.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,15 +42,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
     private ItemClickView itemClickView;
 
 
-
     private DatabaseReference likeRef;
     private DatabaseReference CmtRef;
+
 
     public NewsAdapter(Context context, List<News> newsList) {
         this.context = context;
         this.newsList = newsList;
         likeRef = FirebaseDatabase.getInstance().getReference().child("Liked");
         CmtRef = FirebaseDatabase.getInstance().getReference("Cmts");
+
     }
 
     @NonNull
@@ -113,18 +114,30 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(key).hasChild(HomeFragment.mID)) {
-                            bb=true;
+                            DatabaseReference mNotification;
+                            mNotification = FirebaseDatabase.getInstance().getReference("Notification");
+                            String idKey = newsList.get(i).getId();
+                            String timeKey = String.valueOf(System.currentTimeMillis());
+                            if (!idKey.equals(HomeFragment.mID)){
+                                HashMap<String, Object> map = new HashMap<>();
+                                map.put("id",timeKey);
+                                map.put("hisId",HomeFragment.mID);
+                                map.put("content","đã thích bài viết của bạn.");
+                                mNotification.child(idKey).child(timeKey).setValue(map);
+                            }
+                            bb = true;
                         } else {
-                            bb=false;
+                            bb = false;
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        bb=false;
+                        bb = false;
                     }
                 });
 
-                if (bb==true){
+                if (bb == true) {
                     likeRef.child(newsList.get(i).getTime()).child(HomeFragment.mID).removeValue().addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
@@ -133,7 +146,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
                         }
                     });
 
-                }else {
+                } else {
 
                     likeRef.child(newsList.get(i).getTime()).child(HomeFragment.mID).setValue(true).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -150,7 +163,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CommentActivity.class);
-                intent.putExtra("key",time);
+                intent.putExtra("key", time);
+                intent.putExtra("keyId", uId);
                 context.startActivity(intent);
             }
         });
@@ -158,7 +172,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
         CmtRef.child(time).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String cout = ""+dataSnapshot.getChildrenCount();
+                String cout = "" + dataSnapshot.getChildrenCount();
                 viewholder.cmtCout.setText(cout);
             }
 
@@ -173,7 +187,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("id",uId);
+                intent.putExtra("id", uId);
                 context.startActivity(intent);
             }
         });
@@ -181,7 +195,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("id",uId);
+                intent.putExtra("id", uId);
                 context.startActivity(intent);
             }
         });
@@ -227,17 +241,20 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
 
         void bind(int i) {
             final String key = newsList.get(i).getTime();
+
             likeRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child(key).hasChild(HomeFragment.mID)) {
+                    if (dataSnapshot.child(key).hasChild(HomeFragment.mID)) {
                         btnLikePost.setImageResource(R.drawable.ic_tym_red);
                         coutLike.setText(String.valueOf((int) dataSnapshot.child(key).getChildrenCount()));
+
                     } else {
                         btnLikePost.setImageResource(R.drawable.ic_no_like);
                         coutLike.setText(String.valueOf((int) dataSnapshot.child(key).getChildrenCount()));
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
@@ -246,20 +263,20 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
 
         @Override
         public void onClick(View v) {
-            if (itemClickView != null){
-                itemClickView.onclick(v,getAdapterPosition());
+            if (itemClickView != null) {
+                itemClickView.onclick(v, getAdapterPosition());
             }
 
             final int i = getAdapterPosition();
-            if (bb==true){
+            if (bb == true) {
                 likeRef.child(newsList.get(i).getTime()).child(HomeFragment.mID).removeValue().addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                     btnLikePost.setImageResource(R.drawable.ic_no_like);
+                        btnLikePost.setImageResource(R.drawable.ic_no_like);
                     }
                 });
                 bb = false;
-            }else {
+            } else {
 
                 likeRef.child(newsList.get(i).getTime()).child(HomeFragment.mID).setValue(true).addOnFailureListener(new OnFailureListener() {
                     @Override

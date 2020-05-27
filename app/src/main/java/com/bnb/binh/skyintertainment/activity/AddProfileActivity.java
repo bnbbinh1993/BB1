@@ -97,10 +97,8 @@ public class AddProfileActivity extends AppCompatActivity {
             Toast.makeText(this, "Vui lòng điền công việc của bạn!", Toast.LENGTH_SHORT).show();
         }else if (day.length()<=0){
             Toast.makeText(this, "Vui lòng điền ngày sinh của bạn!", Toast.LENGTH_SHORT).show();
-
         }else if (month.length()<=0){
             Toast.makeText(this, "Vui lòng điền tháng sinh của bạn!", Toast.LENGTH_SHORT).show();
-
         }else if (year.length()<=0){
             Toast.makeText(this, "Vui lòng điền năm sinh của bạn!", Toast.LENGTH_SHORT).show();
         }
@@ -110,7 +108,7 @@ public class AddProfileActivity extends AppCompatActivity {
         if (Integer.parseInt(month)>12 || Integer.parseInt(month)<=0){
             Toast.makeText(this, "Vui lòng điền lại tháng sinh của bạn!", Toast.LENGTH_SHORT).show();
         }else
-        if (Integer.parseInt(year)>3000 || Integer.parseInt(day)<=1900){
+        if (Integer.parseInt(year)>3000 || Integer.parseInt(year)<=1900){
             Toast.makeText(this, "Vui lòng điền lại năm sinh của bạn!", Toast.LENGTH_SHORT).show();
         }else {
             String sn =day+"/"+month+"/"+year;

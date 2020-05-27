@@ -23,7 +23,9 @@
         <activity
             android:name=".activity.StoryActivity"
             android:theme="@style/fullScreenThame" />
-        <activity android:name=".activity.AddProfileActivity" />
+        <activity android:name=".activity.AddProfileActivity" >
+
+        </activity>
         <activity android:name=".activity.FriendsActivity" />
         <activity android:name=".activity.SwipingActivity" />
         <activity android:name=".activity.InformationUserActivity" />

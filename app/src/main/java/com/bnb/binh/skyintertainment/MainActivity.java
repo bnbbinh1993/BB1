@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private String myId;
     private DatabaseReference RootRef;
-    public static boolean Totals = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

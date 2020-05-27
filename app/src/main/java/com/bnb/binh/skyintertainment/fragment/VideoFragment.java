@@ -1,5 +1,6 @@
 package com.bnb.binh.skyintertainment.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -69,6 +70,7 @@ public class VideoFragment extends Fragment {
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -123,57 +125,7 @@ public class VideoFragment extends Fragment {
 
     }
 
-    private void startTask() {
-        //        handlerIMG = new Handler();
-//        layoutEncontrarPers= view.findViewById(R.id.layoutpersion);
-//        imgLogo= view.findViewById(R.id.imgLogo);
-//        imgAmin1= view.findViewById(R.id.imgAmin1);
-//        imgAmin2= view.findViewById(R.id.imgAmin2);
-        runnable.run();
-        layoutEncontrarPers.setVisibility(View.VISIBLE);
-    }
 
-    private void stopTask() {
-        handlerIMG.removeCallbacks(runnable);
-        layoutEncontrarPers.setVisibility(View.GONE);
-    }
-
-
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            imgAmin1.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(700).withEndAction(new Runnable() {
-                @Override
-                public void run() {
-                    imgAmin1.setScaleX(1f);
-                    imgAmin1.setScaleY(1f);
-                    imgAmin1.setAlpha(1f);
-                }
-            });
-
-            imgAmin2.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(500).withEndAction(new Runnable() {
-                @Override
-                public void run() {
-                    imgAmin2.setScaleX(1f);
-                    imgAmin2.setScaleY(1f);
-                    imgAmin2.setAlpha(1f);
-                }
-            });
-            handlerIMG.postDelayed(runnable, 1000);
-        }
-    };
-
-    private void initRecyclerView() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(layoutManager);
-        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
-        mRecyclerView.addItemDecoration(itemDecorator);
-
-        ArrayList<MediaObject> mediaObjects = new ArrayList<MediaObject>(Arrays.asList(Resources.MEDIA_OBJECTS));
-        mRecyclerView.setMediaObjects(mediaObjects);
-        VideoPlayerRecyclerAdapter adapter = new VideoPlayerRecyclerAdapter(mediaObjects, initGlide());
-        mRecyclerView.setAdapter(adapter);
-    }
 
 
     public RequestManager initGlide() {
@@ -359,6 +311,63 @@ public class VideoFragment extends Fragment {
         startActivity(new Intent(getContext(), RoomChatActivity.class));
 
     }
+
+
+
+
+
+    //chua can dung toi
+//    private void startTask() {
+//        //        handlerIMG = new Handler();
+////        layoutEncontrarPers= view.findViewById(R.id.layoutpersion);
+////        imgLogo= view.findViewById(R.id.imgLogo);
+////        imgAmin1= view.findViewById(R.id.imgAmin1);
+////        imgAmin2= view.findViewById(R.id.imgAmin2);
+//        runnable.run();
+//        layoutEncontrarPers.setVisibility(View.VISIBLE);
+//    }
+//
+//    private void stopTask() {
+//        handlerIMG.removeCallbacks(runnable);
+//        layoutEncontrarPers.setVisibility(View.GONE);
+//    }
+//
+//
+//    private Runnable runnable = new Runnable() {
+//        @Override
+//        public void run() {
+//            imgAmin1.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(700).withEndAction(new Runnable() {
+//                @Override
+//                public void run() {
+//                    imgAmin1.setScaleX(1f);
+//                    imgAmin1.setScaleY(1f);
+//                    imgAmin1.setAlpha(1f);
+//                }
+//            });
+//
+//            imgAmin2.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(500).withEndAction(new Runnable() {
+//                @Override
+//                public void run() {
+//                    imgAmin2.setScaleX(1f);
+//                    imgAmin2.setScaleY(1f);
+//                    imgAmin2.setAlpha(1f);
+//                }
+//            });
+//            handlerIMG.postDelayed(runnable, 1000);
+//        }
+//    };
+//
+//    private void initRecyclerView() {
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        mRecyclerView.setLayoutManager(layoutManager);
+//        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
+//        mRecyclerView.addItemDecoration(itemDecorator);
+//
+//        ArrayList<MediaObject> mediaObjects = new ArrayList<MediaObject>(Arrays.asList(Resources.MEDIA_OBJECTS));
+//        mRecyclerView.setMediaObjects(mediaObjects);
+//        VideoPlayerRecyclerAdapter adapter = new VideoPlayerRecyclerAdapter(mediaObjects, initGlide());
+//        mRecyclerView.setAdapter(adapter);
+//    }
 
 
 }
