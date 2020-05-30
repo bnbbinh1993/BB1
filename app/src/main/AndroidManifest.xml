@@ -17,7 +17,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.RoomChatActivity"></activity>
         <activity android:name=".activity.ShowProfileUserActivity" />
-        <activity android:name=".activity.CommentActivity" />
+        <activity android:name=".activity.CommentActivity"
+            />
         <activity android:name=".activity.ChatActivity" />
         <activity android:name=".activity.NewsActivity" />
         <activity

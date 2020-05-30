@@ -105,8 +105,10 @@ public class CommentActivity extends AppCompatActivity {
         map.put("timeCmt",time);
 
         DatabaseReference mNotification = FirebaseDatabase.getInstance().getReference("Notification");
-        if (!key.equals(HomeFragment.mID)){
+        if (!keyId.equals(HomeFragment.mID)){
             HashMap<String, Object> map2 = new HashMap<>();
+            map2.put("reply",false);
+            map2.put("key",key);
             map2.put("id",time);
             map2.put("hisId",HomeFragment.mID);
             map2.put("content","đã bình luận về bài viết của bạn.");

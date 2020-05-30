@@ -118,11 +118,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.Viewholder> {
                             mNotification = FirebaseDatabase.getInstance().getReference("Notification");
                             String idKey = newsList.get(i).getId();
                             String timeKey = String.valueOf(System.currentTimeMillis());
-                            if (!idKey.equals(HomeFragment.mID)){
+                            if (!idKey.equals(HomeFragment.mID)) {
                                 HashMap<String, Object> map = new HashMap<>();
-                                map.put("id",timeKey);
-                                map.put("hisId",HomeFragment.mID);
-                                map.put("content","đã thích bài viết của bạn.");
+                                map.put("reply",false);
+                                map.put("key",key);
+                                map.put("id", timeKey);
+                                map.put("hisId", HomeFragment.mID);
+                                map.put("content", "đã thích bài viết của bạn.");
                                 mNotification.child(idKey).child(timeKey).setValue(map);
                             }
                             bb = true;

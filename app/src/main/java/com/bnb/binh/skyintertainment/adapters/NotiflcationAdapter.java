@@ -4,6 +4,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
@@ -11,8 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.bnb.binh.skyintertainment.R;
+import com.bnb.binh.skyintertainment.activity.CommentActivity;
+import com.bnb.binh.skyintertainment.fragment.HomeFragment;
 import com.bnb.binh.skyintertainment.models.Notiflcation;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -21,13 +23,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NotiflcationAdapter extends RecyclerView.Adapter<NotiflcationAdapter.ViewHolder> {
     private Context context;
     private List<Notiflcation> notificationList;
+    private static final int NTF_REP = 0;
+    private static final int NTF_NO_REP = 1;
 
     public NotiflcationAdapter(Context context, List<Notiflcation> notificationList) {
         this.context = context;
@@ -37,17 +43,23 @@ public class NotiflcationAdapter extends RecyclerView.Adapter<NotiflcationAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.item_notiflcation_recyclerview,
-                                viewGroup,false));
+        if (i == NTF_NO_REP){
+            View view = LayoutInflater.from(context).inflate(R.layout.item_notiflcation_recyclerview,viewGroup,false);
+            return new NotiflcationAdapter.ViewHolder(view);
+        }else {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_notification_reyclerview_rep,viewGroup,false);
+            return new NotiflcationAdapter.ViewHolder(view);
 
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
-        Notiflcation notiflcation = notificationList.get(i);
-        viewHolder.tvNotiflcation.setText(notiflcation.getId());
-        String hisId= notificationList.get(i).getHisId();
+        final Notiflcation notiflcation = notificationList.get(i);
+        final String hisId= notiflcation.getHisId();
+        final String key =notiflcation.getKey();
+        final String id = notiflcation.getId();
+
         DatabaseReference mData = FirebaseDatabase.getInstance().getReference().child("Users");
         mData.child(hisId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,12 +87,36 @@ public class NotiflcationAdapter extends RecyclerView.Adapter<NotiflcationAdapte
 
             }
         });
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra("key",key );
+                intent.putExtra("keyId", hisId);
+
+                HashMap<String,Object> map =new HashMap<>();
+                map.put("reply",true);
+                DatabaseReference reference =FirebaseDatabase.getInstance().getReference().child("Notification");
+                reference.child(HomeFragment.mID).child(id).updateChildren(map);
+
+                context.startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
         return notificationList.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(!notificationList.get(position).isReply()){
+            return NTF_NO_REP;
+        }else {
+            return NTF_REP;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
